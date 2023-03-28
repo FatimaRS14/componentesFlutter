@@ -1,4 +1,5 @@
 import 'package:componentes5b/providers/menu_provider.dart';
+import 'package:componentes5b/utils/set_icons_util.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -54,14 +55,22 @@ class HomeScreen extends StatelessWidget {
         
       
     // ];
-
+    SetIconsUtil iconsUtil = SetIconsUtil();
     final List<Widget> opciones = [];
     data.forEach((opt) {
       final item = ListTile(
       title: Text(opt['texto']),
       subtitle: Text(opt['texto2']),
-      leading: const Icon(Icons.accessibility),
-      trailing: const Icon(Icons.keyboard_arrow_right    ),
+      leading: iconsUtil.getIcon(opt['icon']),
+      trailing: const Icon(Icons.keyboard_arrow_right ),
+      onTap: () {
+        // final route = MaterialPageRoute(builder: (conntext){
+        //   return AlertSreen();
+        //});
+        
+        Navigator.pushNamed(context, opt['ruta']);
+        //El context da el informe de la ubicación de la ruta
+      },
       );
       opciones
       ..add(item)
